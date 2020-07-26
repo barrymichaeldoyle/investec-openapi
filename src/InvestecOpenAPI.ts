@@ -7,10 +7,10 @@ import {
 
 class InvestecOpenAPI {
   private proxyUrl?: string
-  private clientId: string
-  private secret: string
-  private accessToken: string
-  private fetchingAccessToken: boolean
+  private clientId?: string
+  private secret?: string
+  private accessToken?: string
+  private fetchingAccessToken?: boolean
 
   configure({ proxyUrl, clientId, secret }: Config) {
     this.fetchingAccessToken = true
@@ -21,7 +21,7 @@ class InvestecOpenAPI {
     this.getAccessToken()
   }
 
-  async getAccounts(): Promise<GetAccountsResponse> {
+  async getAccounts(): Promise<GetAccountsResponse | undefined> {
     await this.waitForAccessToken()
     try {
       const res = await fetch(
@@ -46,7 +46,7 @@ class InvestecOpenAPI {
 
   async getAccountTransactions(
     accountId: string
-  ): Promise<GetAccountTransactionResponse> {
+  ): Promise<GetAccountTransactionResponse | undefined> {
     await this.waitForAccessToken()
     try {
       const res = await fetch(
@@ -71,7 +71,7 @@ class InvestecOpenAPI {
 
   async getAccountBalance(
     accountId: string
-  ): Promise<GetAccountBalanceResponse> {
+  ): Promise<GetAccountBalanceResponse | undefined> {
     await this.waitForAccessToken()
     try {
       const res = await fetch(

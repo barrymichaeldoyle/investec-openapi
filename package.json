@@ -2,9 +2,17 @@
   "name": "investec-openapi",
   "version": "2.2.0",
   "description": "A JavaScript/TypeScript wrapper to get up and running fast with Investec's Open API for programmable banking.",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [
     "javascript",
@@ -22,8 +30,19 @@
   },
   "devDependencies": {
     "@types/node": "^14.0.26",
-    "@types/webpack-env": "^1.15.2"
+    "@types/webpack-env": "^1.15.2",
+    "prettier": "^2.0.5",
+    "tslint": "^6.1.2",
+    "tslint-config-prettier": "^1.18.0"
   },
-  "types": "dist/index.d.ts",
-  "sideEffects": false
+  "types": "lib/index.d.ts",
+  "sideEffects": false,
+  "bugs": {
+    "url": "https://github.com/barrymichaeldoyle/investec-openapi/issues",
+    "email": "barry@barrymichaeldoyle.com"
+  },
+  "homepage": "https://github.com/barrymichaeldoyle/investec-openapi#readme",
+  "files": [
+    "lib/**/*"
+  ]
 }
