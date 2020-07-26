@@ -2,7 +2,7 @@
   "name": "investec-openapi",
   "version": "1.0.0",
   "description": "A JavaScript/TypeScript wrapper to quickly get up and running with Investec's Open API for programmable banking.",
-  "main": "index.ts",
+  "main": "./src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,13 +11,19 @@
     "typescript",
     "investec",
     "openbanking",
-    "api",
-    "wrapper"
+    "programmable banking",
+    "api wrapper"
   ],
   "author": "Barry Michael Doyle",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/barrymichaeldoyle/investec-openapi"
-  }
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.26",
+    "@types/webpack-env": "^1.15.2"
+  },
+  "types": "./dist/index.d.ts",
+  "sideEffects": false
 }
