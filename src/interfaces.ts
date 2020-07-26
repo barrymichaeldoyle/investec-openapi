@@ -6,13 +6,13 @@ export interface Config {
 
 export interface GetAccountsResponse {
   data: {
-    accounts: Array<{
+    accounts: {
       accountId: string
       accountNumber: string
       accountName: string
       referenceName: string
       productName: string
-    }>
+    }[]
   }
   links: {
     self: string
@@ -24,7 +24,7 @@ export interface GetAccountsResponse {
 
 export interface GetAccountTransactionResponse {
   data: {
-    transactions: Array<{
+    transactions: {
       accountId: string
       type: string
       status: string
@@ -34,7 +34,7 @@ export interface GetAccountTransactionResponse {
       valueDate: string
       actionDate: string
       amount: number
-    }>
+    }[]
   }
   links: {
     self: string
