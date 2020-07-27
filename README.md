@@ -2,6 +2,12 @@
 
 A JavaScript/TypeScript wrapper to get up and running fast with Investec's Open API for programmable banking.
 
+<span class="badge-nodeico"><a href="https://www.npmjs.com/package/investec-openapi" title="Nodei.co badge"><img src="https://nodei.co/npm/investec-openapi.png" alt="Nodei.co badge" /></a></span>
+<br class="badge-separator" />
+<span class="badge-npmversion"><a href="https://npmjs.org/package/investec-openapi" title="View this project on NPM"><img src="https://img.shields.io/npm/v/investec-openapi.svg" alt="NPM version" /></a></span>
+<span class="badge-npmdownloads"><a href="https://npmjs.org/package/investec-openapi" title="View this project on NPM"><img src="https://img.shields.io/npm/dm/investec-openapi.svg" alt="NPM downloads" /></a></span>
+<span class="badge-daviddm"><a href="https://david-dm.org/BarryMichaelDoyle/investec-openapi" title="View the status of this project's dependencies on DavidDM"><img src="https://img.shields.io/david/BarryMichaelDoyle/investec-openapi.svg" alt="Dependency Status" /></a></span>
+
 ### Installation
 
 **Using npm:**
@@ -153,7 +159,7 @@ Returns list of transaction details for selected account.
             accountId: string
             type: string
             status: string
-             description: string
+            description: string
             cardNumber: string
             postingData: string
             valueDate: string
