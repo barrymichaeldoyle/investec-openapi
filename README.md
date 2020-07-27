@@ -180,7 +180,8 @@ Returns list of transaction details for selected account.
 
 Hope you find this useful! Please give a star and feel free to contribute or log issues and feature requests!
 
-And if you want to say thanks, then:
+And if you want to say thanks, then please:
+<br />
 <a href="https://www.buymeacoffee.com/barrydoyle" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
 
 [investec developer documentation]: https://developer.investec.com/programmable-banking/#programmable-banking
