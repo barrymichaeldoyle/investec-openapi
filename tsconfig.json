@@ -4,9 +4,11 @@
     "lib": ["es2015", "dom"],
     "outDir": "./lib",
     "strict": true,
+    "noUnusedLocals": true, 
+    "noUnusedParameters": true, 
     "module": "commonjs",
     "target": "es5"
   },
   "include": ["src"],
-  "exclude": ["node_modules", "**/__tests__/*"]
+  "exclude": ["node_modules", "**/__tests__/*", "./mod.ts", "./deno_dist"]
 }
