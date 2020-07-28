@@ -44,7 +44,7 @@ export interface GetAccountBalanceResponse {
 export interface GetAccountTransactionsRequest {
   accountId: string
   fromDate?: string
-  endDate?: string
+  toDate?: string
 }
 
 export interface GetAccountTransactionsResponse {

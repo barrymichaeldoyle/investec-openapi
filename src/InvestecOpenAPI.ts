@@ -75,7 +75,7 @@ class InvestecOpenAPI {
   async getAccountTransactions({
     accountId,
     fromDate,
-    endDate,
+    toDate,
   }: GetAccountTransactionsRequest): Promise<
     GetAccountTransactionsResponse | undefined
   > {
@@ -85,7 +85,7 @@ class InvestecOpenAPI {
         `${
           this.proxyUrl
         }https://openapi.investec.com/za/pb/v1/accounts/${accountId}/transactions?${buildQueryString(
-          { fromDate, endDate }
+          { fromDate, toDate }
         )}`,
         {
           method: 'GET',
