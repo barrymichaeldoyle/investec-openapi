@@ -77,7 +77,6 @@ const fetchData = async () => {
     fromDate: '2020-01-20',
     toDate: '2020-01-30'
   }).then(accountTransactions => console.log(accountTransactions))
-
 }
 ```
 
@@ -99,21 +98,27 @@ Sets up `api` class with credentials to acquire and refresh `access_token`. Can 
 
 _default:_ `''`
 <br />
+<br />
 **Note for Web Apps:** Without a `proxyUrl`, you'll experience _CORS issues_. If anyone has an ideas on how to bypass this more cleanly, let me know! We could probably do with adding a dedicated proxy server, in the meantime you can use this `'https://young-thicket-56542.herokuapp.com/'`. Sometimes the Heroko app needs to spin up initially so the first load may take longer than usual. The heroku app is a clone of https://cors-anywhere.herokuapp.com/ from this SO post: https://stackoverflow.com/a/43268098/2111515.
+<br />
+<br />
 
 ###### `clientId` - _required_
 
-Get this from https://login.secure.investec.com/io/programmable-banking/cards/overview
+_Get this from https://login.secure.investec.com/io/programmable-banking/cards/overview_
+<br />
+<br />
 
 ###### `secret` - _required_
 
-Get this from https://login.secure.investec.com/io/programmable-banking/cards/overview
+_Get this from https://login.secure.investec.com/io/programmable-banking/cards/overview_
 
 ---
 
 #### **`api.getAccounts()`**
 
 Returns list of accounts with details for configured credentials.
+<br />
 <br />
 **Response:**
 
@@ -145,7 +150,10 @@ Returns account balance details for selected account.
 
 ##### **`request` parameters:**
 
+<br />
+<br />
 `accountId` - **string** _required_
+<br />
 <br />
 **Response:**
 
@@ -174,11 +182,14 @@ Returns list of transaction details for selected account.
 
 ##### **`request` parameters:**
 
+<br />
+<br />
 `accountId` - **string** _required_
 
 `fromDate` - **string** _optional_ - Date value in ISO 8601 (i.e. '2020-01-20')
 
 `toDate` - **string** _optional_ - Date value in ISO 8601 (i.e. '2020-01-20')
+<br />
 <br />
 **Response:**
 
