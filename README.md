@@ -11,6 +11,7 @@ A JavaScript/TypeScript wrapper to get up and running fast with Investec's Open 
 ![Deno](https://img.shields.io/badge/supports-deno-green.svg?style=flat-square)
 ![ECMAScript](https://img.shields.io/badge/supports-ECMAScript-yellow.svg?style=flat-square)
 ![GitHub](https://img.shields.io/github/license/barrymichaeldoyle/investec-openapi)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=round-square)](https://github.com/barrymichaeldoyle/investec-openapi/pulls)
 
 ### Installation
 
