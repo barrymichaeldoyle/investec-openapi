@@ -22,7 +22,32 @@ export interface GetAccountsResponse {
   }
 }
 
-export interface GetAccountTransactionResponse {
+export interface GetAccountBalanceRequest {
+  accountId: string
+}
+
+export interface GetAccountBalanceResponse {
+  data: {
+    accountId: string
+    currentBalance: number
+    availableBalance: number
+    currency: string
+  }
+  links: {
+    self: string
+  }
+  meta: {
+    totalPages: number
+  }
+}
+
+export interface GetAccountTransactionsRequest {
+  accountId: string
+  fromDate?: string
+  endDate?: string
+}
+
+export interface GetAccountTransactionsResponse {
   data: {
     transactions: {
       accountId: string
@@ -35,21 +60,6 @@ export interface GetAccountTransactionResponse {
       actionDate: string
       amount: number
     }[]
-  }
-  links: {
-    self: string
-  }
-  meta: {
-    totalPages: number
-  }
-}
-
-export interface GetAccountBalanceResponse {
-  data: {
-    accountId: string
-    currentBalance: number
-    availableBalance: number
-    currency: string
   }
   links: {
     self: string

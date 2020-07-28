@@ -1,9 +1,12 @@
 import {
   Config,
+  GetAccountBalanceRequest,
   GetAccountBalanceResponse,
-  GetAccountTransactionResponse,
+  GetAccountTransactionsRequest,
+  GetAccountTransactionsResponse,
   GetAccountsResponse,
 } from './interfaces'
+import { buildQueryString } from './utils'
 
 class InvestecOpenAPI {
   private proxyUrl?: string
@@ -44,13 +47,13 @@ class InvestecOpenAPI {
     }
   }
 
-  async getAccountTransactions(
-    accountId: string
-  ): Promise<GetAccountTransactionResponse | undefined> {
+  async getAccountBalance({
+    accountId,
+  }: GetAccountBalanceRequest): Promise<GetAccountBalanceResponse | undefined> {
     await this.waitForAccessToken()
     try {
       const res = await fetch(
-        `${this.proxyUrl}https://openapi.investec.com/za/pb/v1/accounts/${accountId}/transactions`,
+        `${this.proxyUrl}https://openapi.investec.com/za/pb/v1/accounts/${accountId}/balance `,
         {
           method: 'GET',
           headers: {
@@ -69,13 +72,21 @@ class InvestecOpenAPI {
     }
   }
 
-  async getAccountBalance(
-    accountId: string
-  ): Promise<GetAccountBalanceResponse | undefined> {
+  async getAccountTransactions({
+    accountId,
+    fromDate,
+    endDate,
+  }: GetAccountTransactionsRequest): Promise<
+    GetAccountTransactionsResponse | undefined
+  > {
     await this.waitForAccessToken()
     try {
       const res = await fetch(
-        `${this.proxyUrl}https://openapi.investec.com/za/pb/v1/accounts/${accountId}/balance `,
+        `${
+          this.proxyUrl
+        }https://openapi.investec.com/za/pb/v1/accounts/${accountId}/transactions?${buildQueryString(
+          { fromDate, endDate }
+        )}`,
         {
           method: 'GET',
           headers: {
