@@ -87,6 +87,7 @@ Sets up `api` class with credentials to acquire and refresh `access_token`. Can 
 ###### `proxyUrl` - _optional_
 
 _default:_ `''`
+<br />
 **Note for Web Apps:** Without a `proxyUrl`, you'll experience _CORS issues_. If anyone has an ideas on how to bypass this more cleanly, let me know! We could probably do with adding a dedicated proxy server, in the meantime you can use this `'https://young-thicket-56542.herokuapp.com/'`. Sometimes the Heroko app needs to spin up initially so the first load may take longer than usual. The heroku app is a clone of https://cors-anywhere.herokuapp.com/ from this SO post: https://stackoverflow.com/a/43268098/2111515.
 
 ###### `clientId` - _required_
@@ -95,13 +96,14 @@ Get this from https://login.secure.investec.com/io/programmable-banking/cards/ov
 
 ###### `secret` - _required_
 
-Get this from Get this from https://login.secure.investec.com/io/programmable-banking/cards/overview
+Get this from https://login.secure.investec.com/io/programmable-banking/cards/overview
 
 ---
 
 #### **`api.getAccounts()`**
 
 Returns list of accounts with details for configured credentials.
+<br />
 **Response:**
 
 ```
@@ -130,6 +132,7 @@ Returns list of accounts with details for configured credentials.
 
 Returns account balance details for selected account.
 `accountId` - _required_
+<br />
 **Response:**
 
 ```
@@ -155,6 +158,7 @@ Returns account balance details for selected account.
 
 Returns list of transaction details for selected account.
 `accountId` - _required_
+<br />
 **Response:**
 
 ```
