@@ -14,7 +14,7 @@ class InvestecOpenAPI {
 
   configure({ proxyUrl, clientId, secret }: Config) {
     this.fetchingAccessToken = true
-    this.proxyUrl = proxyUrl ?? 'https://young-thicket-56542.herokuapp.com/'
+    this.proxyUrl = proxyUrl ?? ''
     this.clientId = clientId
     this.secret = secret
 

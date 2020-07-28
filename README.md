@@ -86,8 +86,8 @@ Sets up `api` class with credentials to acquire and refresh `access_token`. Can 
 
 ###### `proxyUrl` - _optional_
 
-_default:_ `'https://young-thicket-56542.herokuapp.com/'`
-**Note:** Without a `proxyUrl`, you'll experience _CORS issues_. If anyone has an ideas on how to bypass this more cleanly, let me know! For now the default value should work. Sometimes the Heroko app needs to spin up initially so the first load may take longer than usual. Default url is a clone of https://cors-anywhere.herokuapp.com/ from this SO post: https://stackoverflow.com/a/43268098/2111515
+_default:_ `''`
+**Note for Web Apps:** Without a `proxyUrl`, you'll experience _CORS issues_. If anyone has an ideas on how to bypass this more cleanly, let me know! We could probably do with adding a dedicated proxy server, in the meantime you can use this `'https://young-thicket-56542.herokuapp.com/'`. Sometimes the Heroko app needs to spin up initially so the first load may take longer than usual. The heroku app is a clone of https://cors-anywhere.herokuapp.com/ from this SO post: https://stackoverflow.com/a/43268098/2111515.
 
 ###### `clientId` - _required_
 
