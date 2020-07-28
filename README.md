@@ -35,7 +35,7 @@ yarn add investec-openapi
 import api from 'investec-openapi'
 
 api.configure({
-  proxyUrl: 'ProxyUrl_see_docs_below',
+  proxyUrl: 'see_docs_below_(for_web_apps)',
   clientId: 'YourClientId_do_not_share'
   secret: 'YourSecret_do_not_share'
 })
