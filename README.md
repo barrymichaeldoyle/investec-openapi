@@ -48,11 +48,15 @@ const fetchData = async () => {
   const accounts = await api.getAccounts()
   console.log(accounts) // prints accounts linked to account
 
-  const accountBalance = await api.getAccountBalance('accountId')
+  const accountBalance = await api.getAccountBalance({ accountId: '12345' })
   console.log(accountBalance) // prints account balance
 
-  const accountTransactions = await api.getAccountTransactions('accountId')
-  console.log(accountTransactions) // prints account transactions
+  const accountTransactions = await api.getAccountTransactions({
+    accountId: '12345',
+    fromDate: '2020-01-20',
+    toDate: '2020-01-30'
+  })
+  console.log(accountTransactions) // prints account transactions for given date range
 }
 ```
 
@@ -60,13 +64,20 @@ const fetchData = async () => {
 
 ```
 const fetchData = async () => {
+  // prints accounts linked to account
   api.getAccounts().then(accounts => console.log(accounts))
 
-  api.getAccountBalance('accountId')
+  // prints account balance
+  api.getAccountBalance({ accountId: '12345' })
     .then(accountBalance => console.log(accountBalance))
 
-  api.getAccountTransactions('accountId')
-    .then(accountTransactions => console.log(accountTransactions))
+  // prints account transactions for given date range
+  api.getAccountTransactions({
+    accountId: '12345',
+    fromDate: '2020-01-20',
+    toDate: '2020-01-30'
+  }).then(accountTransactions => console.log(accountTransactions))
+
 }
 ```
 
@@ -131,8 +142,10 @@ Returns list of accounts with details for configured credentials.
 #### **`api.getAccountBalance(accountId)`**
 
 Returns account balance details for selected account.
-<br />
-`accountId` - _required_
+
+##### **`request` parameters:**
+
+`accountId` - **string** _required_
 <br />
 **Response:**
 
@@ -158,8 +171,14 @@ Returns account balance details for selected account.
 #### **`api.getAccountTransactions(accountId)`**
 
 Returns list of transaction details for selected account.
-<br />
-`accountId` - _required_
+
+##### **`request` parameters:**
+
+`accountId` - **string** _required_
+
+`fromDate` - **string** _optional_ - Date value in ISO 8601 (i.e. '2020-01-20')
+
+`toDate` - **string** _optional_ - Date value in ISO 8601 (i.e. '2020-01-20')
 <br />
 **Response:**
 
