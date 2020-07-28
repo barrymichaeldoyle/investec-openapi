@@ -1,2 +1,2 @@
-import InvestecOpenAPI from "./InvestecOpenAPI";
-export default InvestecOpenAPI;
+import InvestecOpenAPI from './InvestecOpenAPI'
+export default InvestecOpenAPI
