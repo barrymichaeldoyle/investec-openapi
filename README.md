@@ -151,7 +151,7 @@ Returns account balance details for selected account.
 
 ---
 
-#### **`api.getAccountBalance(accountId)`**
+#### **`api.getAccountTransactions(accountId)`**
 
 Returns list of transaction details for selected account.
 `accountId` - _required_
@@ -185,8 +185,10 @@ Returns list of transaction details for selected account.
 
 Hope you find this useful! Please give a star and feel free to contribute or log issues and feature requests!
 
-And if you want to say thanks, then please:
+And if you want to say thanks, then go ahead:
 <br /><br />
 <a href="https://www.buymeacoffee.com/barrydoyle" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
+<br /><br />
+Otherwise you could just say thanks to me on the offerzen-community slack @barrymichaeldoyle :)
 
 [investec developer documentation]: https://developer.investec.com/programmable-banking/#programmable-banking
