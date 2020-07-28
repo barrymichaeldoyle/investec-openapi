@@ -45,14 +45,14 @@ api.configure({
 
 ```
 const fetchData = async () => {
-    const accounts = await api.getAccounts()
-    console.log(accounts) // prints accounts linked to account
+  const accounts = await api.getAccounts()
+  console.log(accounts) // prints accounts linked to account
 
-    const accountBalance = await api.getAccountBalance('accountId')
-    console.log(accountBalance) // prints account balance
+  const accountBalance = await api.getAccountBalance('accountId')
+  console.log(accountBalance) // prints account balance
 
-    const accountTransactions = await api.getAccountTransactions('accountId')
-    console.log(accountTransactions) // prints account transactions
+  const accountTransactions = await api.getAccountTransactions('accountId')
+  console.log(accountTransactions) // prints account transactions
 }
 ```
 
@@ -60,13 +60,13 @@ const fetchData = async () => {
 
 ```
 const fetchData = async () => {
-    api.getAccounts().then(accounts => console.log(accounts))
+  api.getAccounts().then(accounts => console.log(accounts))
 
-    api.getAccountBalance('accountId')
-        .then(accountBalance => console.log(accountBalance))
+  api.getAccountBalance('accountId')
+    .then(accountBalance => console.log(accountBalance))
 
-    api.getAccountTransactions('accountId')
-        .then(accountTransactions => console.log(accountTransactions))
+  api.getAccountTransactions('accountId')
+    .then(accountTransactions => console.log(accountTransactions))
 }
 ```
 
@@ -108,21 +108,21 @@ Returns list of accounts with details for configured credentials.
 
 ```
 {
-    data: {
-        accounts: {
-            accountId: string
-            accountNumber: string
-            accountName: string
-            referenceName: string
-            productName: string
-         }[]
-    }
-    links: {
-        self: string
-    }
-    meta: {
-        totalPages: number
-    }
+  data: {
+    accounts: {
+      accountId: string
+      accountNumber: string
+      accountName: string
+      referenceName: string
+      productName: string
+    }[]
+  }
+  links: {
+    self: string
+  }
+  meta: {
+    totalPages: number
+  }
 }
 ```
 
@@ -131,24 +131,25 @@ Returns list of accounts with details for configured credentials.
 #### **`api.getAccountBalance(accountId)`**
 
 Returns account balance details for selected account.
+<br />
 `accountId` - _required_
 <br />
 **Response:**
 
 ```
 {
-    data: {
-        accountId: string
-        currentBalance: number
-        availableBalance: number
-        currency: string
-    }
-    links: {
-        self: string
-    }
-    meta: {
-        totalPages: number
-    }
+  data: {
+    accountId: string
+    currentBalance: number
+    availableBalance: number
+    currency: string
+  }
+  links: {
+    self: string
+  }
+  meta: {
+    totalPages: number
+  }
 }
 ```
 
@@ -157,31 +158,32 @@ Returns account balance details for selected account.
 #### **`api.getAccountTransactions(accountId)`**
 
 Returns list of transaction details for selected account.
+<br />
 `accountId` - _required_
 <br />
 **Response:**
 
 ```
 {
-    data: {
-        transactions: {
-            accountId: string
-            type: string
-            status: string
-            description: string
-            cardNumber: string
-            postingData: string
-            valueDate: string
-            actionDate: string
-            amount: number
-        }[]
-    }
-    links: {
-        self: string
-    }
-    meta: {
-        totalPages: number
-    }
+  data: {
+    transactions: {
+      accountId: string
+      type: string
+      status: string
+      description: string
+      cardNumber: string
+      postingData: string
+      valueDate: string
+      actionDate: string
+      amount: number
+    }[]
+  }
+  links: {
+    self: string
+  }
+  meta: {
+    totalPages: number
+  }
 }
 ```
 
