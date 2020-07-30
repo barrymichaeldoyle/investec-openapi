@@ -6,10 +6,10 @@ export interface Config {
 }
 
 export interface GetAccessTokenResponse {
-  access_token: string;
-  token_type: "Bearer";
-  expires_in: number;
-  scope: "accounts";
+  access_token: string
+  token_type: 'Bearer'
+  expires_in: number
+  scope: 'accounts'
 }
 
 export interface GetAccountsResponse {

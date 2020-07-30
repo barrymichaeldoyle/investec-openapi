@@ -17,18 +17,18 @@ class InvestecOpenAPI {
   private accessTokenExpiry: number = -1
   private errorCallback: (err: Error) => void = console.error
 
-  configure({ proxyUrl, clientId, secret, errorCallback}: Config) {
+  configure({ proxyUrl, clientId, secret, errorCallback }: Config) {
     this.proxyUrl = proxyUrl ?? ''
     this.clientId = clientId
     this.secret = secret
-    if(errorCallback) {
-      this.errorCallback = errorCallback 
+    if (errorCallback) {
+      this.errorCallback = errorCallback
     }
   }
 
   async getAccounts(): Promise<GetAccountsResponse | undefined> {
     const accessToken = await this.getAccessToken()
-    if(!accessToken) {
+    if (!accessToken) {
       return
     }
     try {
@@ -41,16 +41,12 @@ class InvestecOpenAPI {
           },
         }
       )
-      if(!res.ok) {
+      if (!res.ok) {
         throw new Error(`Server returned ${res.status} ${res.statusText} `)
       }
       return await res.json()
     } catch (ex) {
-      console.error('Something went wrong!', { ex })
-      console.warn(
-        'Make sure your `proxyUrl` is setup properly.',
-        this.proxyUrl
-      )
+      this.handleException(ex)
     }
   }
 
@@ -58,7 +54,7 @@ class InvestecOpenAPI {
     accountId,
   }: GetAccountBalanceRequest): Promise<GetAccountBalanceResponse | undefined> {
     const accessToken = await this.getAccessToken()
-    if(!accessToken) {
+    if (!accessToken) {
       return
     }
     try {
@@ -71,16 +67,12 @@ class InvestecOpenAPI {
           },
         }
       )
-      if(!res.ok) {
+      if (!res.ok) {
         throw new Error(`Server returned ${res.status} ${res.statusText} `)
       }
       return await res.json()
     } catch (ex) {
-      console.error('Something went wrong!', { ex })
-      console.warn(
-        'Make sure your `proxyUrl` is setup properly.',
-        this.proxyUrl
-      )
+      this.handleException(ex)
     }
   }
 
@@ -92,7 +84,7 @@ class InvestecOpenAPI {
     GetAccountTransactionsResponse | undefined
   > {
     const accessToken = await this.getAccessToken()
-    if(!accessToken) {
+    if (!accessToken) {
       return
     }
     try {
@@ -109,28 +101,27 @@ class InvestecOpenAPI {
           },
         }
       )
-      if(!res.ok) {
+      if (!res.ok) {
         throw new Error(`Server returned ${res.status} ${res.statusText} `)
       }
       return await res.json()
     } catch (ex) {
-      console.error('Something went wrong!', { ex })
-      console.warn(
-        'Make sure your `proxyUrl` is setup properly.',
-        this.proxyUrl
-      )
+      this.handleException(ex)
     }
   }
 
+  private handleException(ex: any): void {
+    console.warn('Make sure your `proxyUrl` is setup properly.', this.proxyUrl)
+  }
+
   private async getAccessToken(): Promise<string | undefined> {
-    
     if (!this.clientId || !this.secret) {
       throw new Error(
         'Investec Open API not configured yet, please call `investecOpenAPI.configure({ ... })` first.\n `clientId` and `secret` fields are required!'
       )
     }
 
-    if(this.accessToken && this.accessTokenExpiry > Date.now()) {
+    if (this.accessToken && this.accessTokenExpiry > Date.now()) {
       return this.accessToken
     }
 
@@ -146,18 +137,24 @@ class InvestecOpenAPI {
           method: 'POST',
         }
       )
-      if(!res.ok) {
-          this.errorCallback(new Error(`Error getting access token. Server returned ${res.status} ${res.statusText}`))
-          return
+      if (!res.ok) {
+        this.errorCallback(
+          new Error(
+            `Error getting access token. Server returned ${res.status} ${res.statusText}`
+          )
+        )
+        return
       }
-      const { access_token, expires_in } = (await res.json()) as GetAccessTokenResponse
+      const {
+        access_token,
+        expires_in,
+      } = (await res.json()) as GetAccessTokenResponse
       this.accessToken = access_token
-      this.accessTokenExpiry = Date.now() + ((expires_in - 30) * 1000) // Expire the token a few seconds early to be conservative
+      this.accessTokenExpiry = Date.now() + (expires_in - 30) * 1000 // Expire the token a few seconds early to be conservative
     } catch (ex) {
-        this.errorCallback(ex)
+      this.errorCallback(ex)
     }
   }
-
 }
 
 const investecOpenAPI = new InvestecOpenAPI()
