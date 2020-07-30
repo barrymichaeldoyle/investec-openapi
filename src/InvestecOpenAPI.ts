@@ -126,7 +126,7 @@ class InvestecOpenAPI {
     } catch (ex) {
       console.error('Something went wrong!', { ex })
       console.warn(
-        'Make sure your `proxyUrl` is setup properly.',
+        "If you're building a web app, make sure your `proxyUrl` is setup properly.",
         this.proxyUrl
       )
     }
@@ -134,7 +134,7 @@ class InvestecOpenAPI {
 
   private async waitForAccessToken(): Promise<void> {
     while (this.fetchingAccessToken) {
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      await new Promise(resolve => setTimeout(resolve, 100))
     }
   }
 
