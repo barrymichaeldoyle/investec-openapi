@@ -37,9 +37,16 @@ import api from 'investec-openapi'
 api.configure({
   proxyUrl: 'see_docs_below_(for_web_apps)',
   clientId: 'YourClientId_do_not_share'
-  secret: 'YourSecret_do_not_share'
+  secret: 'YourSecret_do_not_share',
+  errorCallback: (err) => {
+    // Handle errors with getting an access token
+    // The err object is either an Error or an HTTP Response from the OAuth server
+    console.error(err)
+  }
 })
 ```
+
+The `errorCallback` is optional. Errors will be logged to `std.err` if it is not provided.
 
 **Get Data:**
 

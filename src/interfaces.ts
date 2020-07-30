@@ -1,7 +1,15 @@
 export interface Config {
   proxyUrl?: string
+  errorCallback?: (error: Error) => void
   clientId: string
   secret: string
+}
+
+export interface GetAccessTokenResponse {
+  access_token: string;
+  token_type: "Bearer";
+  expires_in: number;
+  scope: "accounts";
 }
 
 export interface GetAccountsResponse {
