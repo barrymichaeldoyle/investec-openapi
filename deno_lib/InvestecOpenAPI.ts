@@ -16,7 +16,6 @@ class InvestecOpenAPI {
   private accessToken?: string
   private accessTokenExpiry: number = -1
   private errorCallback: (err: Error) => void = console.error
-  private state: "DISCONNECTED" | "CONNECTED" | "CONNECTING" = "DISCONNECTED"
 
   configure({ proxyUrl, clientId, secret, errorCallback}: Config) {
     this.proxyUrl = proxyUrl ?? ''
