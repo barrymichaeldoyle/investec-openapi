@@ -15,13 +15,13 @@ class InvestecOpenAPI {
   private accessToken?: string
   private fetchingAccessToken?: boolean
 
-  configure({ proxyUrl, clientId, secret }: Config) {
+  configure({ proxyUrl, clientId, secret, errorCallback}: Config) {
     this.fetchingAccessToken = true
     this.proxyUrl = proxyUrl ?? ''
     this.clientId = clientId
     this.secret = secret
 
-    this.getAccessToken()
+    this.getAccessToken(errorCallback)
   }
 
   async getAccounts(): Promise<GetAccountsResponse | undefined> {
@@ -105,7 +105,7 @@ class InvestecOpenAPI {
     }
   }
 
-  private async getAccessToken(): Promise<void> {
+  private async getAccessToken(errorCallback?: (error: Error | Response) => void): Promise<void> {
     this.checkConfigured()
     try {
       const res = await fetch(
@@ -119,16 +119,20 @@ class InvestecOpenAPI {
           method: 'POST',
         }
       )
+      if(!res.ok) {
+        errorCallback ? 
+          errorCallback(res) : 
+          console.error(`Error getting access token. Server returned ${res.status} ${res.statusText}`)
+          return
+      }
       const { access_token, expires_in } = await res.json()
       this.accessToken = access_token
       this.fetchingAccessToken = false
-      setTimeout(() => this.getAccessToken(), expires_in * 1000 - 60 * 1000)
+      setTimeout(() => this.getAccessToken(errorCallback), expires_in * 1000 - 60 * 1000)
     } catch (ex) {
-      console.error('Something went wrong!', { ex })
-      console.warn(
-        "If you're building a web app, make sure your `proxyUrl` is setup properly.",
-        this.proxyUrl
-      )
+      errorCallback ? 
+        errorCallback(ex) : 
+        console.error('Something went wrong!', { ex })
     }
   }
 
@@ -141,7 +145,7 @@ class InvestecOpenAPI {
   private checkConfigured() {
     if (!this.clientId || !this.secret) {
       throw new Error(
-        'Investic Open API not configured yet, please call `investecOpenAPI.configure({ ... })` first.\n `clientId` and `secret` fields are required!'
+        'Investec Open API not configured yet, please call `investecOpenAPI.configure({ ... })` first.\n `clientId` and `secret` fields are required!'
       )
     }
   }

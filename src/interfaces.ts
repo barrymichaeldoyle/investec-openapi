@@ -1,5 +1,6 @@
 export interface Config {
   proxyUrl?: string
+  errorCallback?: (error: Error | Response) => void
   clientId: string
   secret: string
 }
