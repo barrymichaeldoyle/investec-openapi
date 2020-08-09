@@ -21,16 +21,13 @@ class InvestecOpenAPI {
     this.proxyUrl = proxyUrl ?? ''
     this.clientId = clientId
     this.secret = secret
-    if (errorCallback) {
-      this.errorCallback = errorCallback
-    }
+    if (errorCallback) this.errorCallback = errorCallback
   }
 
   async getAccounts(): Promise<GetAccountsResponse | undefined> {
     const accessToken = await this.getAccessToken()
-    if (!accessToken) {
-      return
-    }
+    if (!accessToken) return
+
     try {
       const res = await fetch(
         `${this.proxyUrl}https://openapi.investec.com/za/pb/v1/accounts`,
@@ -41,9 +38,9 @@ class InvestecOpenAPI {
           },
         }
       )
-      if (!res.ok) {
+      if (!res.ok)
         throw new Error(`Server returned ${res.status} ${res.statusText} `)
-      }
+
       return await res.json()
     } catch (ex) {
       this.handleException(ex)
@@ -54,9 +51,8 @@ class InvestecOpenAPI {
     accountId,
   }: GetAccountBalanceRequest): Promise<GetAccountBalanceResponse | undefined> {
     const accessToken = await this.getAccessToken()
-    if (!accessToken) {
-      return
-    }
+    if (!accessToken) return
+
     try {
       const res = await fetch(
         `${this.proxyUrl}https://openapi.investec.com/za/pb/v1/accounts/${accountId}/balance `,
@@ -67,9 +63,9 @@ class InvestecOpenAPI {
           },
         }
       )
-      if (!res.ok) {
+      if (!res.ok)
         throw new Error(`Server returned ${res.status} ${res.statusText} `)
-      }
+
       return await res.json()
     } catch (ex) {
       this.handleException(ex)
@@ -84,9 +80,8 @@ class InvestecOpenAPI {
     GetAccountTransactionsResponse | undefined
   > {
     const accessToken = await this.getAccessToken()
-    if (!accessToken) {
-      return
-    }
+    if (!accessToken) return
+
     try {
       const res = await fetch(
         `${
@@ -101,9 +96,9 @@ class InvestecOpenAPI {
           },
         }
       )
-      if (!res.ok) {
+      if (!res.ok)
         throw new Error(`Server returned ${res.status} ${res.statusText} `)
-      }
+
       return await res.json()
     } catch (ex) {
       this.handleException(ex)
@@ -115,15 +110,13 @@ class InvestecOpenAPI {
   }
 
   private async getAccessToken(): Promise<string | undefined> {
-    if (!this.clientId || !this.secret) {
+    if (!this.clientId || !this.secret)
       throw new Error(
         'Investec Open API not configured yet, please call `investecOpenAPI.configure({ ... })` first.\n `clientId` and `secret` fields are required!'
       )
-    }
 
-    if (this.accessToken && this.accessTokenExpiry > Date.now()) {
+    if (this.accessToken && this.accessTokenExpiry > Date.now())
       return this.accessToken
-    }
 
     try {
       const res = await fetch(
@@ -145,12 +138,15 @@ class InvestecOpenAPI {
         )
         return
       }
+
       const {
         access_token,
         expires_in,
       } = (await res.json()) as GetAccessTokenResponse
+      console.log({ access_token, expires_in })
       this.accessToken = access_token
-      this.accessTokenExpiry = Date.now() + (expires_in - 30) * 1000 // Expire the token a few seconds early to be conservative
+      this.accessTokenExpiry = Date.now() + (expires_in - 30) * 1000
+      return access_token
     } catch (ex) {
       this.errorCallback(ex)
     }
