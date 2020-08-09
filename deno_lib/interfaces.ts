@@ -12,15 +12,17 @@ export interface GetAccessTokenResponse {
   scope: 'accounts'
 }
 
+export interface Account {
+  accountId: string
+  accountNumber: string
+  accountName: string
+  referenceName: string
+  productName: string
+}
+
 export interface GetAccountsResponse {
   data: {
-    accounts: {
-      accountId: string
-      accountNumber: string
-      accountName: string
-      referenceName: string
-      productName: string
-    }[]
+    accounts: Account[]
   }
   links: {
     self: string
@@ -34,13 +36,15 @@ export interface GetAccountBalanceRequest {
   accountId: string
 }
 
+export interface AccountBalance {
+  accountId: string
+  currentBalance: number
+  availableBalance: number
+  currency: string
+}
+
 export interface GetAccountBalanceResponse {
-  data: {
-    accountId: string
-    currentBalance: number
-    availableBalance: number
-    currency: string
-  }
+  data: AccountBalance
   links: {
     self: string
   }
@@ -55,19 +59,21 @@ export interface GetAccountTransactionsRequest {
   toDate?: string
 }
 
+export interface Transaction {
+  accountId: string
+  type: string
+  status: string
+  description: string
+  cardNumber: string
+  postingData: string
+  valueDate: string
+  actionDate: string
+  amount: number
+}
+
 export interface GetAccountTransactionsResponse {
   data: {
-    transactions: {
-      accountId: string
-      type: string
-      status: string
-      description: string
-      cardNumber: string
-      postingData: string
-      valueDate: string
-      actionDate: string
-      amount: number
-    }[]
+    transactions: Transaction[]
   }
   links: {
     self: string
