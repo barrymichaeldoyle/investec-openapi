@@ -60,15 +60,16 @@ export interface GetAccountTransactionsRequest {
 }
 
 export interface Transaction {
-  accountId: string
-  type: string
-  status: string
-  description: string
-  cardNumber: string
-  postingData: string
-  valueDate: string
   actionDate: string
+  accountId: string
   amount: number
+  cardNumber: string
+  description: string
+  postingData: string
+  status: string
+  transactionDate: string
+  type: string
+  valueDate: string
 }
 
 export interface GetAccountTransactionsResponse {
