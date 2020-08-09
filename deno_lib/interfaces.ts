@@ -65,7 +65,7 @@ export interface Transaction {
   amount: number
   cardNumber: string
   description: string
-  postingDate: string
+  postingData: string
   status: string
   transactionDate: string
   type: string
