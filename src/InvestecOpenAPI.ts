@@ -143,7 +143,6 @@ class InvestecOpenAPI {
         access_token,
         expires_in,
       } = (await res.json()) as GetAccessTokenResponse
-      console.log({ access_token, expires_in })
       this.accessToken = access_token
       this.accessTokenExpiry = Date.now() + (expires_in - 30) * 1000
       return access_token
