@@ -117,6 +117,12 @@ _Get this from https://login.secure.investec.com/io/programmable-banking/cards/o
 `secret` - _required_
 
 _Get this from https://login.secure.investec.com/io/programmable-banking/cards/overview_
+<br />
+<br />
+
+`apiKey` - _required_
+
+_Get this from https://login.secure.investec.com/io/programmable-banking/cards/overview_
 
 ---
 
