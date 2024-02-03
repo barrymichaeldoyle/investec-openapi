@@ -13,14 +13,16 @@ class InvestecOpenAPI {
   private proxyUrl?: string
   private clientId?: string
   private secret?: string
+  private apiKey?: string
   private accessToken?: string
   private accessTokenExpiry: number = -1
   private errorCallback: (err: Error) => void = console.error
 
-  configure({ proxyUrl, clientId, secret, errorCallback }: Config) {
+  configure({ proxyUrl, clientId, secret, apiKey, errorCallback }: Config) {
     this.proxyUrl = proxyUrl ?? ''
     this.clientId = clientId
     this.secret = secret
+    this.apiKey = apiKey
     if (errorCallback) this.errorCallback = errorCallback
   }
 
@@ -110,9 +112,9 @@ class InvestecOpenAPI {
   }
 
   private async getAccessToken(): Promise<string | undefined> {
-    if (!this.clientId || !this.secret)
+    if (!this.clientId || !this.secret || !this.apiKey)
       throw new Error(
-        'Investec Open API not configured yet, please call `investecOpenAPI.configure({ ... })` first.\n `clientId` and `secret` fields are required!'
+        'Investec Open API not configured yet, please call `investecOpenAPI.configure({ ... })` first.\n `clientId`, `secret` and `apiKey` fields are required!'
       )
 
     if (this.accessToken && this.accessTokenExpiry > Date.now())
@@ -126,6 +128,7 @@ class InvestecOpenAPI {
           headers: {
             Authorization: `Basic ${btoa(this.clientId + ':' + this.secret)}`,
             'Content-Type': 'application/x-www-form-urlencoded',
+            'x-api-Key': this.apiKey,
           },
           method: 'POST',
         }
@@ -147,7 +150,7 @@ class InvestecOpenAPI {
       this.accessTokenExpiry = Date.now() + (expires_in - 30) * 1000
       return access_token
     } catch (ex) {
-      this.errorCallback(ex)
+      this.errorCallback(ex as Error)
     }
   }
 }
