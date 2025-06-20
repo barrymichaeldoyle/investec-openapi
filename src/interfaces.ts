@@ -3,6 +3,7 @@ export interface Config {
   errorCallback?: (error: Error) => void
   clientId: string
   secret: string
+  apiKey: string
 }
 
 export interface GetAccessTokenResponse {
